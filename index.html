@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,14 +43,15 @@
             font-weight: bold;
             margin: 0;
             text-shadow: 0 0 8px var(--text-shadow-color), 
-                        0 0 20px var(--text-shadow-color);
+                         0 0 20px var(--text-shadow-color);
         }
 
         main {
             flex: 1;
             padding: 40px 20px;
             margin: 0 auto;
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
         }
 
         main h3 {
@@ -60,17 +60,17 @@
             font-weight: bold;
         }
 
-        
+        /* Flashcard Container Setup */
         .flashcard-container {
             perspective: 1000px;
             margin-bottom: 30px;
             width: 100%;
-            height: 250px;
+            height: 380px; /* Tamaño adecuado para alojar descripción y video */
             cursor: pointer;
         }
 
         .flashcard-container.pdf-card {
-            height: 500px; 
+            height: 520px; 
         }
 
         .flashcard {
@@ -98,6 +98,8 @@
             border-left: 6px solid var(--primary-blue);
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
+            overflow-y: auto;
         }
 
         .flashcard-back {
@@ -109,7 +111,7 @@
 
         .flashcard h4 {
             color: var(--footer-red);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: bold;
         }
 
@@ -125,6 +127,12 @@
             margin-top: 10px;
         }
 
+        video {
+            max-height: 220px;
+            object-fit: contain;
+            background-color: #000;
+        }
+
         footer {
             display: flex;
             justify-content: space-between;
@@ -136,29 +144,32 @@
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 10;
+            margin-top: auto;
         }
 
         footer img {
             transition: transform 0.4s ease, filter 0.3s ease;
             cursor: pointer;
+            max-width: 100%;
+            height: auto;
         }
 
         footer img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             filter: brightness(1.1);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             footer {
                 flex-direction: column;
                 gap: 20px;
                 padding: 25px;
             }
             .flashcard-container {
-                height: 350px; 
+                height: 420px; 
             }
             .flashcard-container.pdf-card {
-                height: 450px;
+                height: 480px;
             }
         }
     </style>
@@ -172,57 +183,140 @@
     <main>
         <h3>Contenido de la página WEB</h3>
 
-        <div class="flashcard-container semana pdf-card">
+        <!-- Semana 1: Introducción a Arduino (PDF + Video) -->
+        <div class="flashcard-container pdf-card">
             <div class="flashcard">
                 <div class="flashcard-front">
                     <h4>Semana 1: Introducción a Arduino</h4>
                     <p>En este documento exploramos los conceptos fundamentales de electrónica y microcontroladores. Analizamos qué es el hardware libre, los distintos tipos de placas y la estructura del Arduino UNO.</p>
                     <p>También se repasan conceptos clave como las resistencias, variables en programación y la diferencia entre señales digitales y análogas.</p>
-                    <p class="text-muted mt-auto"><small>Pasa el mouse para visualizar el documento PDF</small></p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para visualizar el documento PDF y el video</small></p>
                 </div>
                 <div class="flashcard-back">
-                    <h4>Documento de Trabajo</h4>
+                    <h4>Documento de Trabajo y Video</h4>
                     <iframe class="pdf-frame" src="Recursos/Introducción Arduino (2ab).pdf" title="PDF Arduino"></iframe>
-                </div>
-            </div>
-        </div>
-
-        <div class="flashcard-container semana">
-            <div class="flashcard">
-                <div class="flashcard-front">
-                    <h4>Semana 2: Introducción a CSS</h4>
-                    <p>Descubrimos el poder de los estilos en cascada. Aprendimos a aplicar colores, fuentes y a dar forma a nuestra página utilizando selectores y propiedades básicas...</p>
-                    <p class="text-muted"><small>Pasa el mouse para ver más detalles</small></p>
-                </div>
-                <div class="flashcard-back">
-                    <h4>Semana 2: Detalles Completos</h4>
-                    <p>Vimos cómo vincular nuestra hoja de estilos externa, el uso de selectores (clases e IDs), y propiedades fundamentales de formato. Empezamos a jugar con colores y tipografía para mejorar la estética visual...</p>
-                    <!-- Semana 2: Con Video -->
-        <div class="flashcard-container semana">
-            <div class="flashcard">
-                <!-- Parte frontal (Igual a la anterior) -->
-                <div class="flashcard-front">
-                    <h4>Semana 2: Introducción a CSS</h4>
-                    <p>Descubrimos el poder de los estilos en cascada. Aprendimos a aplicar colores, fuentes y a dar forma a nuestra página utilizando selectores y propiedades básicas...</p>
-                    <p class="text-muted"><small>Pasa el mouse para ver el video</small></p>
-                </div>
-                
-                <!-- Parte trasera con Video -->
-                <div class="flashcard-back">
-                    <h4>Video de la Semana</h4>
-                    <p>Resumen del aprendizaje sobre estilos y diseño visual:</p>
-                    
-                    <!-- Etiqueta de Video -->
                     <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
-                        <source src="c:\Users\Alumno Capouilliez\Documents\AnikaCabrera11E\Grabación 2026-05-06 124603.mp4" type="video/mp4">
+                        <source src="Recursos/Video_Semana1.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de videos.
                     </video>
                 </div>
             </div>
         </div>
+
+        <!-- Semana 2: Introducción a CSS -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 2: Introducción a CSS</h4>
+                    <p>Descubrimos el poder de los estilos en cascada. Aprendimos a aplicar colores, fuentes y a dar forma a nuestra página utilizando selectores y propiedades básicas...</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video explicativo y detalles</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 2: Resumen y Video</h4>
+                    <p>Vimos cómo vincular nuestra hoja de estilos externa, el uso de selectores (clases e IDs), y propiedades fundamentales de formato para mejorar la estética visual de la web.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Grabación 2026-05-06 124603.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
                 </div>
             </div>
         </div>
+
+        <!-- Semana 3: Modelo de Cajas y Flexbox -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 3: Modelo de Cajas y Flexbox</h4>
+                    <p>Profundizamos en la estructura del diseño web comprendiendo el modelo de cajas (padding, margin, border, content) y las herramientas modernas de alineación mediante Flexbox.</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video explicativo</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 3: Demostración de Flexbox</h4>
+                    <p>Análisis de propiedades esenciales como <code>justify-content</code>, <code>align-items</code> y <code>flex-direction</code> para crear maquetaciones adaptables y bien estructuradas.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Video_Semana3.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semana 4: Diseño Responsivo y Media Queries -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 4: Diseño Responsivo y Media Queries</h4>
+                    <p>Aprendimos a adaptar la interfaz para múltiples dispositivos (móviles, tablets y escritorio) aplicando puntos de interrupción mediante <code>@media</code> en CSS.</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video explicativo</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 4: Adaptabilidad Dispositivos</h4>
+                    <p>Implementación de unidades relativas (%, rem, vh, vw) y reglas tipográficas dinámicas para asegurar que la web sea legible y accesible en cualquier resolución.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Video_Semana4.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semana 5: Animaciones y Transiciones en CSS -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 5: Animaciones y Transiciones CSS</h4>
+                    <p>Exploramos efectos dinámicos interactivos como transformaciones 2D/3D, animaciones avanzadas con <code>@keyframes</code> y transiciones suaves al interactuar con el usuario.</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video explicativo</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 5: Tarjetas Giratorias y Efectos</h4>
+                    <p>Demostración práctica de efectos 3D, incluyendo la creación del componente de tarjetas giratorias (flashcards) que se utiliza en esta misma bitácora.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Video_Semana5.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semana 6: Sensores e Integración con Arduino -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 6: Sensores e Integración con Arduino</h4>
+                    <p>Retomamos el desarrollo de hardware conectando sensores ultrasónicos, ultrasensibles de temperatura y potenciómetros para la lectura analógica y digital desde la placa Arduino.</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video explicativo</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 6: Circuitos y Monitoreo</h4>
+                    <p>Programación del Monitor Serie para visualizar lecturas de datos en tiempo real y controlar actuadores (LEDs y servomotores) de acuerdo a los rangos del sensor.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Video_Semana6.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semana 7: Proyecto Integrador e Interconexión -->
+        <div class="flashcard-container">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h4>Semana 7: Proyecto Integrador e Interconexión</h4>
+                    <p>Consolidación de lo aprendido en la unidad: desarrollo de un proyecto físico-digital conectando la captura de datos de Arduino con el diseño de la interfaz web.</p>
+                    <p class="text-muted mt-auto"><small>Pasa el mouse para ver el video del proyecto final</small></p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Semana 7: Demostración Final</h4>
+                    <p>Presentación completa del funcionamiento del proyecto final, revisión de código, montaje de circuito y conclusiones del aprendizaje de la unidad.</p>
+                    <video controls style="width: 100%; border-radius: 8px; margin-top: 10px;">
+                        <source src="Recursos/Video_Semana7.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de videos.
+                    </video>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
